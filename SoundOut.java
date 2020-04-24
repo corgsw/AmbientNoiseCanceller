@@ -23,11 +23,19 @@ public class SoundOut {
                     target.start();
                     source.start();
                     int readBytes;
+                    short inverse;
                     byte[] data = new byte[target.getBufferSize()];
                     FloatControl pan = (FloatControl) source.getControl(FloatControl.Type.PAN);
-                    pan.setValue(1);
+                    pan.setValue(0);
                     while (true) {
                         readBytes = target.read(data, 0, data.length);
+                        for(int i = 0; i < readBytes; i+=2)
+                        {
+                            inverse = (short) -((short)(data[i+1] << 8 | data[i] & 0xff));
+                            System.out.println(inverse/100);
+                            data[i] = (byte) (inverse & 0xff);
+                            data[i+1] = (byte) ((inverse >> 8) & 0xff);
+                        }
                         source.write(data, 0, readBytes);
                     }
                 }
