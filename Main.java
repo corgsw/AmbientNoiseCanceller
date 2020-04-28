@@ -1,8 +1,7 @@
 
 public class Main {
-	public static void main (String [] args) {
-		/*System_frame sys = new System_frame();
-		sys.audio_frame(); //initialize default frame here*/
-		SoundOut.soundtest();
+	public static void main (String[] args) {
+		Window win = new Window();
+		win.startWindow();
 	}
 }

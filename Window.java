@@ -1,6 +1,6 @@
 
 public class Window {
-	public static void main (String [] args) {
+	void startWindow() {
 		System_frame sys = new System_frame();
 		sys.audio_frame(); //initialize default frame here
 	}
